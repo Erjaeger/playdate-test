@@ -9,8 +9,13 @@ function Ball:init()
 
     self:moveTo(200, 110)
 
-    self.xVelocity = 3
-    self.yVelocity = 3
+    local radius = 3
+    local theta = math.random() * ((math.pi * 2))
+    local ax = math.cos(theta) * radius
+    local ay = math.sin(theta) * radius
+
+    self.xVelocity = ax
+    self.yVelocity = ay
 
     local img = gfx.image.new(self.size * 2, self.size * 2)
     gfx.pushContext(img)
@@ -42,6 +47,14 @@ function Ball:update()
             if collision.normal.y ~= 0 then
                 bounceNormal.y = collision.normal.y
             end
+        elseif collision.other.collisionResponse == gfx.sprite.kCollisionTypeOverlap then
+            if self.x > 380 then
+                updateScorePlayer()
+            elseif self.x < 15 then
+                updateScoreEnemy()
+            end
+            self:remove()
+            newBall()
         end
     end
 

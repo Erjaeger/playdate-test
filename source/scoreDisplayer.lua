@@ -1,39 +1,36 @@
 local gfx <const> = playdate.graphics
+local scoreSprite
+local scoreEnemy = 0
+local scorePlayer = 0
 
-class("ScoreDisplayer").extends(gfx.sprite)
+function createScoreDisplayer()
+    scoreSprite = gfx.sprite.new()
 
-function ScoreDisplayer:init()
-    ScoreDisplayer.super.init(self);
-
-    self.scorePlayer = 0
-    self.scoreEnemy = 0
-    self:updateDisplayer()
-    self:setCenter(0,0)
-    
-    self:add()
+    scorePlayer = 0
+    scoreEnemy = 0
+    updateDisplayer()
+    scoreSprite:setCenter(0, 0)
+    scoreSprite:add()
 end
 
-function ScoreDisplayer:updateDisplayer()
-    local score = self.scorePlayer .. ' : ' .. self.scoreEnemy
+function updateScoreEnemy()
+    scoreEnemy += 1
+    updateDisplayer()
+end
+
+function updateScorePlayer()
+    scorePlayer += 1
+    updateDisplayer()
+end
+
+function updateDisplayer()
+    local score = scorePlayer .. ' : ' .. scoreEnemy
     local wText, hText = gfx.getTextSize(score)
-    self:moveTo((200-wText/2), 30)
-    print(wText, hText)
+    scoreSprite:moveTo((200 - wText / 2), 30)
     local imgText = gfx.image.new(wText, hText)
-    print('SCORE : ' .. score)
     gfx.pushContext(imgText)
     gfx.setImageDrawMode(gfx.kDrawModeInverted)
     gfx.drawText(score, 0, 0)
     gfx.popContext()
-    self:setImage(imgText)
-end
-
-
-function ScoreDisplayer:UpdateScoreEnemy()
-    self.scoreEnemy += 1
-    self:updateDisplayer()
-end
-
-function ScoreDisplayer:UpdateScorePlayer()
-    self.scorePlayer += 1
-    self:updateDisplayer()
+    scoreSprite:setImage(imgText)
 end
