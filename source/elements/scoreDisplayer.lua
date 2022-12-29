@@ -5,7 +5,6 @@ local scorePlayer = 0
 
 function createScoreDisplayer()
     scoreSprite = gfx.sprite.new()
-
     scorePlayer = 0
     scoreEnemy = 0
     updateDisplayer()

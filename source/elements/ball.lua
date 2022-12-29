@@ -27,6 +27,7 @@ function Ball:init()
 
     self:setCollideRect(0, 0, self:getSize())
     self.collisionResponse = gfx.sprite.kCollisionTypeBounce
+    ballCount += 1
     self:add()
 end
 
@@ -53,8 +54,8 @@ function Ball:update()
             elseif self.x < 15 then
                 updateScoreEnemy()
             end
+            ballCount -= 1
             self:remove()
-            newBall()
         end
     end
 
