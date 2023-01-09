@@ -1,6 +1,7 @@
 import "CoreLibs/sprites"
 import "CoreLibs/object"
 import "CoreLibs/graphics"
+import "CoreLibs/math"
 
 import "scenes/launchMenu"
 import "utils/sceneManager"

@@ -2,13 +2,13 @@ local gfx <const> = playdate.graphics
 
 class("Player").extends(gfx.sprite)
 
-function Player:init(x, automatic)
+function Player:init(x, y, automatic)
     Player.super.init(self)
     self.x = x
-    self.y = 10
+    self.y = y
     self.w = 10
     self.h = 40
-    self.speed = 3
+    self.speed = 5
     self.automatic = automatic
 
     self:setCenter(0, 0)

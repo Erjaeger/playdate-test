@@ -7,7 +7,7 @@ function LaunchMenu:init()
     self.selectedItem = 1
     self.items = {
         {
-            Jouer = function()
+            Play = function()
                 SCENE_MANAGER:switchScene(GameScene)
             end
         },
@@ -48,7 +48,7 @@ end
 function LaunchMenu:drawMenuStartGame()
     local wTextMax = 0
     local hTextMax = 0
-
+    
     gfx.setBackgroundColor(gfx.kColorBlack)
 
     for index, value in ipairs(self.items) do
